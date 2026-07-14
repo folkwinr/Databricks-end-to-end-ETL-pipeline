@@ -6,7 +6,7 @@ The main idea is simple: transaction files are added to an AWS S3 bucket, ingest
 
 I used the Medallion Architecture to organize the data into Bronze, Silver, and Gold layers.
 
-## 🔄 How the Pipeline Works
+##  How the Pipeline Works
 
 The overall data flow looks like this:
 
@@ -32,7 +32,7 @@ Once the table is updated, a table update trigger starts the Databricks Job. The
 
 The goal was to make the entire flow run automatically without manually starting the ETL pipeline each time new data arrives.
 
-## 🥉 Bronze Layer
+##  Bronze Layer
 
 The Bronze layer reads transaction data from the source streaming table.
 
@@ -50,7 +50,7 @@ spark.readStream.table("dataengineering.endtoend.transactions")
 
 Keeping the raw data separate makes it easier to trace the original source data before transformations are applied.
 
-## 🥈 Silver Layer
+##  Silver Layer
 
 The Silver layer is responsible for cleaning and validating the transaction data.
 
@@ -73,7 +73,7 @@ The cleaned data is stored in:
 
 Databricks pipeline expectations are also used to validate quantity, unit price, and total amount values before the records continue through the pipeline.
 
-## 🥇 Gold Layer
+##  Gold Layer
 
 The Gold layer creates a daily summary from the cleaned transaction data.
 
